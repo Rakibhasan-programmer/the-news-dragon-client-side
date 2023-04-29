@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import LeftNav from './shared/LeftNav';
 import RightNav from './shared/RightNav';
+import { Outlet } from 'react-router-dom';
 
 const Home = () => {
     return (
@@ -12,7 +13,7 @@ const Home = () => {
                         <LeftNav />
                     </Col>
                     <Col lg={6}>
-                        <h2>Main Content</h2>
+                        <Outlet />
                     </Col>
                     <Col lg={3}>
                         <RightNav />

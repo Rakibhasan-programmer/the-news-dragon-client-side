@@ -17,7 +17,7 @@ const LeftNav = () => {
           <p key={category.id}>
             <Link
               className="text-decoration-none text-black"
-              to={`/categories/${category.id}`}
+              to={`/category/${category.id}`}
             >
               {category.name}
             </Link>
