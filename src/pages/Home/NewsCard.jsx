@@ -1,9 +1,10 @@
 import React from "react";
-import { Button, Card, Image } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import { FaEye, FaRegBookmark, FaRegStar, FaShareAlt, FaStar } from "react-icons/fa";
-import Rating from "react-rating";
+import { FaEye, FaRegBookmark, FaShareAlt } from "react-icons/fa";
+import "@smastrom/react-rating/style.css";
+import { Rating } from "@smastrom/react-rating";
 
 const NewsCard = ({ news }) => {
   const { title, details, _id, image_url, author, rating, total_view } = news;
@@ -23,31 +24,31 @@ const NewsCard = ({ news }) => {
         </div>
       </Card.Header>
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title className="py-2">{title}</Card.Title>
         <Card.Img variant="top" src={image_url} />
-        <Card.Text>
+        <Card.Text className="py-3 lh-lg fw-light">
           {details.length < 250 ? (
             <>{details}</>
           ) : (
             <>
               {details.slice(0, 250)}...{" "}
-              <Link to={`/news/${_id}`}>Read More</Link>
+              <Link className="text-decoration-none" to={`/news/${_id}`}>
+                Read More
+              </Link>
             </>
           )}
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
       </Card.Body>
       <Card.Footer className="d-flex">
         <div className="flex-grow-1">
-          <Rating
-            className="text-warning"
-            placeholderRating={rating?.number}
-            emptySymbol={<FaRegStar />}
-            fullSymbol={<FaStar />}
-            placeholderSymbol={<FaStar />}
-            readonly
-          />
-          <span> {rating?.number}</span>
+          <div className="d-flex align-items-center">
+            <Rating
+              style={{ width: "5.6rem" }}
+              value={rating?.number}
+              readOnly
+            />
+            <span className="d-block ms-1"> {rating?.number}</span>
+          </div>
         </div>
         <div>
           <FaEye />

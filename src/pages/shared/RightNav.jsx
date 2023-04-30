@@ -47,9 +47,9 @@ const RightNav = () => {
         </ListGroup>
       </div>
       <QZone />
-      <div>
+      {/* <div>
         <img src={bg} alt="" />
-      </div>
+      </div> */}
     </>
   );
 };

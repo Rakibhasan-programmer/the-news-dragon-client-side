@@ -11,8 +11,8 @@ const News = () => {
       <Card.Img variant="top" src={image_url} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        <Card.Text>{details}</Card.Text>
-        <Link className="btn btn-danger" to={`/category/${category_id}`}>
+        <Card.Text className="py-3 fw-light lh-lg">{details}</Card.Text>
+        <Link className="btn btn-danger rounded-0" to={`/category/${category_id}`}>
           <FaArrowLeft className="me-2" />
             ALL News in this Category
         </Link>

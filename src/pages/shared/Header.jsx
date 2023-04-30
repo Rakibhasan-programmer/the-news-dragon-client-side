@@ -4,17 +4,18 @@ import moment from "moment";
 import { Button, Container } from "react-bootstrap";
 import Marquee from "react-fast-marquee";
 
-
 const Header = () => {
   return (
     <>
-      <Container>
+      <Container className="pb-3">
         <div className="text-center pt-4">
           <img src={logo} alt="" />
-          <p>
-            <small>Journalism Without Fear or Favor</small>
-          </p>
-          <p>{moment().format("dddd, MMMM Do YYYY")}</p>
+          <div className="pt-3">
+            <span>
+              <small>Journalism Without Fear or Favor</small>
+            </span>
+            <p>{moment().format("dddd, MMMM Do YYYY")}</p>
+          </div>
         </div>
         <div className="d-flex">
           <Button className="rounded-0 py-2 px-3" variant="danger">
