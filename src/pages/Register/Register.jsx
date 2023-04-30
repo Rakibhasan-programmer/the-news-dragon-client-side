@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-
+import { Form } from "react-bootstrap";
 
 const Register = () => {
-  const {createUser} = useContext(AuthContext);
+  const [toggle, setToggle] = useState(true);
+  const { createUser } = useContext(AuthContext);
 
   // create user
   const handleRegister = (e) => {
@@ -18,17 +19,17 @@ const Register = () => {
 
     // user creation
     createUser(email, password)
-    .then(result => {
-      const createdUser = result.user;
-      console.log(createdUser);
-    })
-    .catch(error => {
-      console.log(error.message);
-    })
+      .then((result) => {
+        const createdUser = result.user;
+        console.log(createdUser);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
 
     // reseting form value
     e.target.reset();
-  }
+  };
   return (
     <>
       <form className="container mb-5" onSubmit={handleRegister}>
@@ -87,8 +88,22 @@ const Register = () => {
                     required
                   />
                 </div>
+                <Form.Group
+                  className="pt-3"
+                  id="formGridCheckbox"
+                  onClick={() => setToggle(!toggle)}
+                >
+                  <Form.Check
+                    type="checkbox"
+                    label="Accept Terms and conditions"
+                  />
+                </Form.Group>
                 <div>
-                  <button className="btn btn-dark mt-5 w-100 fw-bold fs-5">
+                  <button
+                    className={`btn btn-dark mt-3 w-100 fw-bold fs-5 ${
+                      toggle ? "disabled" : ""
+                    }`}
+                  >
                     Signup
                   </button>
                 </div>
