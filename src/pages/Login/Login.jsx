@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const { signInUser } = useContext(AuthContext);
+  // sign in user
+  const handleLogin = (e) => {
+    // preventing refreshing
+    e.preventDefault();
+
+    // form values
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+    // sign in
+    signInUser(email, password)
+    .then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+    })
+    .catch(error => console.log(error.message))
+
+
+    // reseting form value
+    e.target.reset();
+  }
   return (
     <>
       <div className="container pt-4">
@@ -12,11 +35,12 @@ const Login = () => {
                 <h3>Welcome to Login</h3>
                 <img src="" alt="" />
               </div>
-              <div className="card-body">
-                <span className="fs-5 d-block pb-1">Username or Email</span>
+              <form className="card-body" onSubmit={handleLogin}>
+                <span className="fs-5 d-block pb-1">Email</span>
                 <div className="input-group mb-3">
                   <input
-                    type="text"
+                    type="email"
+                    name="email"
                     className="form-control"
                     placeholder="Username"
                     aria-label="Username"
@@ -26,7 +50,8 @@ const Login = () => {
                 <span className="fs-5 d-block pb-1">Password</span>
                 <div className="input-group">
                   <input
-                    type="text"
+                    type="password"
+                    name="password"
                     className="form-control"
                     placeholder="Password"
                     aria-label="password"
@@ -53,7 +78,7 @@ const Login = () => {
                     Signup
                   </Link>
                 </p>
-              </div>
+              </form>
             </div>
           </div>
         </div>

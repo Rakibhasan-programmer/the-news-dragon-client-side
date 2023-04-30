@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 const Register = () => {
+  const {createUser} = useContext(AuthContext);
+
+  // create user
+  const handleRegister = (e) => {
+    e.preventDefault();
+    // form values
+    const name = e.target.username.value;
+    const email = e.target.email.value;
+    const photo = e.target.photo.value;
+    const password = e.target.password.value;
+    // console.log(name, email, photo, password);
+
+    // user creation
+    createUser(email, password)
+    .then(result => {
+      const createdUser = result.user;
+      console.log(createdUser);
+    })
+    .catch(error => {
+      console.log(error.message);
+    })
+
+    // reseting form value
+    e.target.reset();
+  }
   return (
     <>
-      <form className="container">
+      <form className="container mb-5" onSubmit={handleRegister}>
         <div className="row d-flex justify-content-center pt-5">
           <div className="col-md-5">
             <div className="card p-4">
@@ -21,6 +47,18 @@ const Register = () => {
                     placeholder="Username"
                     name="username"
                     aria-label="Username"
+                    aria-describedby="basic-addon1"
+                    required
+                  />
+                </div>
+                <span className="fs-5 d-block pb-1">Photo URL</span>
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Photo url"
+                    name="photo"
+                    aria-label="photo"
                     aria-describedby="basic-addon1"
                     required
                   />
