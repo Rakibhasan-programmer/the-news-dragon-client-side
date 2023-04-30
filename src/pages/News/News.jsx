@@ -14,7 +14,7 @@ const News = () => {
         <Card.Text>{details}</Card.Text>
         <Link className="btn btn-danger" to={`/category/${category_id}`}>
           <FaArrowLeft className="me-2" />
-          ALL News in this ategory
+            ALL News in this Category
         </Link>
       </Card.Body>
     </Card>
