@@ -5,11 +5,13 @@ import Footer from '../pages/shared/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
 import LeftNav from '../pages/shared/LeftNav';
 import RightNav from '../pages/shared/RightNav';
+import NavigationBar from '../pages/shared/NavigationBar';
 
 const Main = () => {
     return (
         <>
            <Header />
+           <NavigationBar />
            <Container>
                 <Row>
                     <Col lg={3}>

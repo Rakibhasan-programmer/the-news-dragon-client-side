@@ -20,12 +20,6 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/categories/${params.id}`),
       },
-      {
-        path: "/login",
-      },
-      {
-        path: "/register",
-      },
     ],
   },
   {
