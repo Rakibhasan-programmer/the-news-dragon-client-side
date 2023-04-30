@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import LeftNav from './shared/LeftNav';
-import RightNav from './shared/RightNav';
+import LeftNav from '../shared/LeftNav';
+import RightNav from '../shared/RightNav';
 import { Outlet } from 'react-router-dom';
 
 const Home = () => {
