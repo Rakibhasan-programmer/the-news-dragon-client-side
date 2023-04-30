@@ -16,11 +16,11 @@ const RightNav = () => {
     <>
       <div>
         <h4>Login with</h4>
-        <Button className="mb-2 rounded-0" variant="outline-primary">
+        <Button className="mb-2 rounded-0 d-block" variant="outline-primary">
           <FaGoogle className="me-2" />
           Login with Google
         </Button>
-        <Button className="rounded-0" variant="outline-secondary">
+        <Button className="rounded-0 mb-2 d-block" variant="outline-secondary">
           <FaGithub className="me-2" />
           Login with Google
         </Button>
