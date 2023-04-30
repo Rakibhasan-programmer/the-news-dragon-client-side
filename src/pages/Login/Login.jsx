@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const { signInUser } = useContext(AuthContext);
+
+  const redirectLocation = location?.state?.from?.pathname || "/";
   // sign in user
   const handleLogin = (e) => {
     // preventing refreshing
@@ -17,10 +22,10 @@ const Login = () => {
     signInUser(email, password)
     .then(result => {
       const loggedUser = result.user;
-      console.log(loggedUser);
+      // navigate to home page
+      navigate(redirectLocation, {replace: true});
     })
     .catch(error => console.log(error.message))
-
 
     // reseting form value
     e.target.reset();

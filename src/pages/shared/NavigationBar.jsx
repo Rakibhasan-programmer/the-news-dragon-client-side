@@ -5,7 +5,18 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const NavigationBar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  // logout
+  const handleLogOut = () => {
+    logOut()
+    .then(result => {
+      console.log(result.user);
+    })
+    .catch(error => {
+      console.log(error.message);
+    })
+  }
   return (
     <Container className="py-3">
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -30,9 +41,13 @@ const NavigationBar = () => {
                 </Nav.Link>
               )}
               {user ? (
-                <Button variant="dark ms-2">Logout</Button>
+                <Button variant="dark ms-2" onClick={handleLogOut}>
+                  Logout
+                </Button>
               ) : (
-                <Link className="btn btn-dark ms-2" to={"/login"}>Login</Link>
+                <Link className="btn btn-dark ms-2" to={"/login"}>
+                  Login
+                </Link>
               )}
             </Nav>
           </Navbar.Collapse>
