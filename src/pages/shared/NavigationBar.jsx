@@ -10,13 +10,13 @@ const NavigationBar = () => {
   // logout
   const handleLogOut = () => {
     logOut()
-    .then(result => {
-      console.log(result.user);
-    })
-    .catch(error => {
-      console.log(error.message);
-    })
-  }
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <Container className="py-3">
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -36,9 +36,20 @@ const NavigationBar = () => {
             </Nav>
             <Nav>
               {user && (
-                <Nav.Link href="/">
-                  <FaUserCircle style={{ fontSize: "1.9rem" }} />
-                </Nav.Link>
+                <Link>
+                  {user?.photoURL ? (
+                    <>
+                      <img
+                        className="rounded-circle"
+                        style={{ width: "2.4rem" }}
+                        src={user?.photoURL}
+                        alt="user image"
+                      />
+                    </>
+                  ) : (
+                    <Button variant="warning">{user?.email}</Button>
+                  )}
+                </Link>
               )}
               {user ? (
                 <Button variant="dark ms-2" onClick={handleLogOut}>
