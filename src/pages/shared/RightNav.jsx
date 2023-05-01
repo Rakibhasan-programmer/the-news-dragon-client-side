@@ -10,12 +10,13 @@ import {
 } from "react-icons/fa";
 import QZone from "./QZone";
 import bg from "../../assets/bg.png";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const RightNav = () => {
-  const { googleLogin } = useContext(AuthContext);
+  const { googleLogin, githubLogin } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   // google login
   const handleGoogleLogin = () => {
     googleLogin(provider)
@@ -24,6 +25,18 @@ const RightNav = () => {
         console.log(loggedUser);
       })
       .catch((err) => console.log(err.message));
+  };
+
+  // github login
+  const handleGithubLogin = () => {
+    githubLogin(githubProvider)
+      .then((res) => {
+        const githubUser = res.user;
+        console.log(githubUser);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   return (
     <>
@@ -37,9 +50,13 @@ const RightNav = () => {
           <FaGoogle className="me-2" />
           Login with Google
         </Button>
-        <Button className="rounded-0 mb-2 d-block" variant="outline-secondary">
+        <Button
+          className="rounded-0 mb-2 d-block"
+          variant="outline-secondary"
+          onClick={handleGithubLogin}
+        >
           <FaGithub className="me-2" />
-          Login with Google
+          Login with Github
         </Button>
       </div>
       <div className="py-4">
