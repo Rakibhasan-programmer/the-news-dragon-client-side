@@ -9,7 +9,7 @@ const Header = () => {
     <>
       <Container className="pb-3">
         <div className="text-center pt-4">
-          <img src={logo} alt="" />
+          <img className="img-fluid" src={logo} alt="" />
           <div className="pt-3">
             <span>
               <small>Journalism Without Fear or Favor</small>
